@@ -3,26 +3,42 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div id="app">
-       <header>
-            <button @click="show = !show">
-                <i class="ion-navicon"></i>
-            </button>
-        </header>
-        
-        <aside v-show="show" transition="slide"></aside>
+		
+		<input type="text" v-model="input_text" autofocus>
+		<ul>
+			<!-- <li v-for="item in array | filterBy input_text">{{item.name}}, {{ item.age | currency 'грн' 0}}</li> -->
+			<li v-for="item in array" :filter-key="input_text">{{item.name}}, {{ item.age}}</li>
+		</ul>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script> -->
 	<script>
 		new Vue({
 			el:"#app",
-			data: {
-                show: false
-            }
+			data:{
+				input_text:"",
+				array:[
+					{
+						name: 'Иван',
+						age: 45
+					},
+					{
+						name: 'Вика',
+						age: 19
+					},
+					{
+						name: 'Иван',
+						age: 29
+					},
+					{
+						name: 'Максим',
+						age: 20
+					},
+				]
+			}
 		});
 	</script>
 </body>

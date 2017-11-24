@@ -3,49 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div id="app">
-		<ul>
-			<li v-for="bear in bears" :class="{'strike' : bear.status}">{{ bear.name }}</li>
-		</ul>
-		<form action="">
-			<button v-on:click.prevent="clickMe">Кнопка</button>
-		</form>
-			<input type="text" v-model="message" v-on:keyup.enter="clickMe">
-			<input type="text" v-model="message" @keyup.enter="clickMe">
+       <header>
+            <button @click="show = !show">
+                <i class="ion-navicon"></i>
+            </button>
+        </header>
+        
+        <aside v-show="show" transition="slide"></aside>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script>
 		new Vue({
 			el:"#app",
-			methods:{
-				clickMe: function (){
-					console.log(this.message);
-				}
-			},
-			data:{
-				message: 'что то важное',
-				bears:[
-					{
-						name: 'гризли',
-						status: false
-					},
-					{
-						name: 'белый',
-						status: false
-					},
-					{
-						name: 'панда',
-						status: true
-					},
-					{
-						name: 'губач',
-						status: false
-					},
-				]
-			}
+			data: {
+                show: false
+            }
 		});
 	</script>
 </body>

@@ -1,0 +1,27 @@
+{
+  "name": "vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify -t vueify -e app.js -o build.js",
+    "watch": "watchify -t vueify -e app.js -o build.js"
+  },
+  "devDependencies": {
+    "browserify": "*",
+    "vue": "*",
+    "vueify": "*",
+    "watchify": "^3.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saxum2010/vue_test.git"
+  },
+  "author": "saxum2010",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saxum2010/vue_test/issues"
+  },
+  "homepage": "https://github.com/saxum2010/vue_test#readme"
+}

@@ -17,14 +17,20 @@
 		</ul>
 
 		<textarea v-model="textarea_text">##Header</textarea>
-		<div id="result">{{{ textarea_text | marked }}}</div>
+		<div id="result">{{{ textarea_text | emoji }}}</div>
 	</div>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
-	 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
 	 <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 	<script>
-		Vue.filter('marked', marked);
-		new Vue({
+        Vue.filter('emoji', function(value) {
+ 			if (!value) return ''
+            return value.replace('единорог', '&#129412;')
+                        .replace('щенок', '&#128054;')
+                        .replace('огне', '&#128293;')
+                        .replace('грустно', '&#128546;')
+        })
+
+        new Vue({
 			el:"#app",
 			data:{
 				input_text:"",

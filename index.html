@@ -3,39 +3,65 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app">
+  <div id="app">
         
-        <form>
-            
-            <span>{{ counter }} / 30</span>
+        <v-dialog btn-text="Согласен" btn-cancel="Отм">Вопрос 1</v-dialog>
+        <v-dialog btn-text="Хорошо" btn-cancel="Отмена">Вопрос 2</v-dialog>
 
-            <textarea v-model="text_textarea"></textarea>
-            
-            <button v-if="counter <= 30">Отправить</button>
-			<span v-if="counter >= 30">Too many</span>
-        </form>
-    
     </div>
+
+ <template id="dialog-template">
+        <div>
+            <div class="Dialog" v-show="active">
+                <div class="Dialog__overlay" @click="close()"></div>
+                <div class="Dialog__content">
+                    <div class="Dialog__body">
+                        <slot></slot>
+                    </div>
+                    <div class="Dialog__footer">
+                        <button class="btn" @click="onCancel()">{{ btnCancel }}</button>
+                        <button class="btn btn-ok" @click="onConfirm()">{{ btnText }}</button>
+                    </div>
+                </div>
+            </div>
+
+            <a class="link" href="#" @click="open()">ссылка</a>
+        </div>
+    </template>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script> -->
 	 <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
-	<script>
-
-        new Vue({
-			el:"#app",
-			data: {
-                text_textarea: ''
+	 <script>
+        Vue.component('v-dialog', {
+            template: '#dialog-template',
+            data: function() {
+                return {
+                    active: false
+                }
             },
-            computed:{
-                counter: function(){
-                	if (!this.text_textarea) return '0'
-                    return this.text_textarea.length;
+            props: ['btnText','btnCancel'],
+            methods: {
+                open: function() {
+                    this.active = true
+                },
+                close: function() {
+                    this.active = false
+                },
+                onCancel: function() {
+                    this.close();
+                },
+                onConfirm: function() {
+                    this.close();
+                    alert('Good');
                 }
             }
-
-		});
-	</script>
+        })
+        new Vue({
+            el: "#app"
+        })
+    </script>
 </body>
 </html>

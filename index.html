@@ -3,49 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="style.css">
 </head>
 <body>
- <div id="app">
-    <messagetag @message-saved="handleMessage"></messagetag>
-    <ol>
-        <li v-for="message in messages">{{ message }}</li>
-    </ol>
- </div>
-
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script> -->
-	 <!-- <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script> -->
-	 <script>
-	  Vue.component('messagetag', {
-	    template: '<input v-model="messagetag" @keyup.enter="saveMessage">',
-	    data: function() {
-	        return {
-	            messagetag: ''
-	        }
-	    },
-	    methods: {
-	        saveMessage: function() {
-	        	if(this.messagetag){
-		            this.$emit('message-saved', this.messagetag)
-	        	}
-
-	            this.messagetag = ''
-	        }
-	    }
-	})
-
-	new Vue({
-	    el: '#app',
-	    data: {
-	        messages: []
-	    },
-	    methods: {
-	        handleMessage: function(message) {
-	            this.messages.push(message)
-	        }
-	    }
-	})
-    </script>
+	<script src="build.js"></script>
 </body>
 </html>

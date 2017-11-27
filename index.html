@@ -15,10 +15,15 @@
 			<li v-for="item in array | filterBy input_text">{{item.name}}, {{ item.age | currency 'грн' 0}}</li>
 			<!-- <li v-for="item in array" :filter-key="input_text">{{item.name}}, {{ item.age}}</li> -->
 		</ul>
+
+		<textarea v-model="textarea_text">##Header</textarea>
+		<div id="result">{{{ textarea_text | marked }}}</div>
 	</div>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
 	 <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 	<script>
+		Vue.filter('marked', marked);
 		new Vue({
 			el:"#app",
 			data:{

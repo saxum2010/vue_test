@@ -9,6 +9,9 @@
 		
 		<input type="text" v-model="input_text" autofocus>
 		<ul>
+			<li v-for="item in array | orderBy 'name' 'age' -1">{{item.name}}, {{ item.age | currency 'грн' 0}}</li>
+		</ul>
+		<ul>
 			<li v-for="item in array | filterBy input_text">{{item.name}}, {{ item.age | currency 'грн' 0}}</li>
 			<!-- <li v-for="item in array" :filter-key="input_text">{{item.name}}, {{ item.age}}</li> -->
 		</ul>

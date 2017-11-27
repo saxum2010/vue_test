@@ -6,34 +6,22 @@
 </head>
 <body>
 	<div id="app">
-		
-		<input type="text" v-model="input_text" autofocus>
-		<ul>
-			<li v-for="item in array | orderBy 'name' 'age' -1">{{item.name}}, {{ item.age | currency 'грн' 0}}</li>
-		</ul>
-		<ul>
-			<li v-for="item in array | filterBy input_text">{{item.name}}, {{ item.age | currency 'грн' 0}}</li>
-			<!-- <li v-for="item in array" :filter-key="input_text">{{item.name}}, {{ item.age}}</li> -->
-		</ul>
-
-		<textarea v-model="textarea_text">##Header</textarea>
-		<div id="result">{{{ textarea_text | emoji }}}</div>
+	   <span>{{ title | capitalize }}</span>
 	</div>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
-	 <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script> -->
 	<script>
-        Vue.filter('emoji', function(value) {
- 			if (!value) return ''
-            return value.replace('единорог', '&#129412;')
-                        .replace('щенок', '&#128054;')
-                        .replace('огне', '&#128293;')
-                        .replace('грустно', '&#128546;')
-        })
 
         new Vue({
 			el:"#app",
 			data:{
-				input_text:"",
+			   filters: {
+			      capitalize: function(string) {
+			         return string.charAt(0).toUpperCase() + string.slice(1);
+			      }
+			   },
+				title: "Title",
+				input_text: "",
 				array:[
 					{
 						name: 'Иван',

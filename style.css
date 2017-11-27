@@ -1,117 +1,90 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    margin: 0;
     padding: 0;
-    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
-#app {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-/* Dialog */
-.Dialog__overlay {
+header {
     position: fixed;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.6);
+    right: 0;
+    height: 48px;
 }
 
-.Dialog__content {
-    position: fixed;
-    z-index: 13;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    text-align: center;
-    border-radius: 2px;
-    width: 70%;
-    max-width: 250px;
+nav {
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
 }
 
-.Dialog__body {
-    padding: 20px;
-    font-size: 15px;
-    color: #4a4a4a;
-    word-wrap: break-word;
-    word-break: break-all;
-    font-weight: 500;
+nav a {
+    display: inline-block;
+    padding: 16px 20px;
+    text-decoration: none;
+    color:  #8a8d96;
+    font-weight: 400;
 }
 
-.Dialog__footer {
-    position: relative;
-    line-height: 42px;
-    font-size: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    white-space: nowrap;
-    width: 100%;
-    height: 40px;
+nav a:hover {
+    color: #272727;
 }
 
-.Dialog__footer:after {
-    content: " ";
+/* Фигуры */
+.square, 
+.triangle, 
+.circles,
+.egg {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 1px;
-    border-top: 1px solid #D5D5D6;
-    color: #D5D5D6;
-    transform-origin: 0 0;
-    transform: scaleY(0.5);
+    top: 120px;
+    left: 50%;
 }
 
-.btn {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    flex: 1;
-    border-left: 1px solid #D5D5D6 !important;
-    font-size: 1rem;
-    line-height: 30px;
-    display: inline-block;
-    height: 32px;
-    padding: 0 15px;
-    text-align: center;
-    text-decoration: none;
-    background-color: transparent;
-    color: #0179f1;
-    border-radius: 3px;
-    outline: 0;
-    vertical-align: middle;
-    transition: box-shadow .1s ease-out,background-color .1s ease-out, border-color .1s ease-out, color .1s ease-out;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
+.square {
+    width: 240px;
+    height: 240px;
+    background-color: #00bcd4;
+    margin-left: -120px;
 }
 
-.btn-ok {
-    font-weight: 500;
+.triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 120px 207.8px 120px;
+    border-color: transparent transparent #3f51b5 transparent;
+    margin-left: -120px;
 }
 
-.btn:active {
-    background-color: rgba(0, 0, 0, 0.05);
+.circles {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background-color: red;
+    margin-left: -120px;
 }
 
-.btn:first-child {
-    border-bottom-left-radius: 2px;
-    border-left: none !important;
+.egg {
+    width: 168px;
+    height: 240px;
+    background-color: #ffc107;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    margin-left: -84px;
 }
 
-.link {
-    color: #08c;
-    font-size: 16px;
-    display: inline-block;
-    text-decoration: none;
-    border-bottom: 2px dotted;
-    margin-right: 5px;
+.switch-transition {
+    transition: all .5s ease-in-out;
+}
+
+.switch-enter {
+    left: 100%;
+}
+
+.switch-leave {
+    left: -100%;
 }

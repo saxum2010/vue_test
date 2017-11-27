@@ -6,34 +6,38 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app">
+ <div id="app">
+        <header>
+            <nav>
+                <a href="#" @click="switchView('square')">Квадрат</a>
+                <a href="#" @click="switchView('triangle')">Треугольник</a>
+                <a href="#" @click="switchView('circles')">Круг</a>
+                <a href="#" @click="switchView('egg')">Яйцо</a>
+            </nav>
+        </header>
         
-        <v-dialog btn-text="Согласен" btn-cancel="Отм">Вопрос 1</v-dialog>
-        <v-dialog btn-text="Хорошо" btn-cancel="Отмена">Вопрос 2</v-dialog>
-
+        <component :is="currentView" transition="switch"></component>
     </div>
 
- <template id="dialog-template">
-        <div>
-            <div class="Dialog" v-show="active">
-                <div class="Dialog__overlay" @click="close()"></div>
-                <div class="Dialog__content">
-                    <div class="Dialog__body">
-                        <slot></slot>
-                    </div>
-                    <div class="Dialog__footer">
-                        <button class="btn" @click="onCancel()">{{ btnCancel }}</button>
-                        <button class="btn btn-ok" @click="onConfirm()">{{ btnText }}</button>
-                    </div>
-                </div>
-            </div>
-
-            <a class="link" href="#" @click="open()">ссылка</a>
-        </div>
+    <template id="square-template">
+        <div class="square"></div>
     </template>
+
+    <template id="circles-template">
+        <div class="circles"></div>
+    </template>
+
+    <template id="triangle-template">
+        <div class="triangle"></div>
+    </template>
+
+    <template id="egg-template">
+        <div class="egg"></div>
+    </template>
+
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script> -->
-	 <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+	 <!-- <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script> -->
 	 <script>
         Vue.component('v-dialog', {
             template: '#dialog-template',
@@ -59,9 +63,31 @@
                 }
             }
         })
-        new Vue({
-            el: "#app"
-        })
+   new Vue({
+    el: "#app",
+    data: {
+        currentView: 'square'
+    },
+    components: {
+        square: {
+            template: '#square-template'
+        },
+        triangle: {
+            template: '#triangle-template'
+        },
+        circles: {
+            template: '#circles-template'
+        },
+        egg: {
+            template: '#egg-template'
+        }
+    },
+    methods: {
+        switchView: function(view) {
+            this.currentView = view
+        }
+    }
+})
     </script>
 </body>
 </html>

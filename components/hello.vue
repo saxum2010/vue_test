@@ -1,20 +1,45 @@
 <template>
-    <h1>{{ greeting }}</h1>
+  <div id="apps">
+    <h1>{{ msg }}</h1>
+  </div>
 </template>
 
 <script>
-    module.exports = {
-        data: function() {
-            return {
-                greeting: 'Hello Vueify! :)'
-            }
-        }
+export default {
+  name: 'app',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js with Webpack'
     }
+  }
+}
 </script>
 
 <style>
-    h1 {
-        font-family: 'Roboto', sans-serif;
-        color: green;
-    }
+#apps {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+h1, h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
 </style>

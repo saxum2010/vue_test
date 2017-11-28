@@ -5,14 +5,19 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify -t vueify -e app.js -o build.js",
-    "watch": "watchify -t vueify -e app.js -o build.js"
+    "build": "webpack -p --config webpack.config.js"
   },
   "devDependencies": {
-    "browserify": "*",
-    "vue": "*",
-    "vueify": "*",
-    "watchify": "^3.9.0"
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-plugin-transform-runtime": "*",
+    "babel-preset-es2015": "*",
+    "css-loader": "*",
+    "vue-cli": "^2.9.1",
+    "vue-loader": "*",
+    "vue-template-compiler": "^2.5.9",
+    "vuejs": "^2.0.6",
+    "webpack": "^3.8.1"
   },
   "repository": {
     "type": "git",

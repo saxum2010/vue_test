@@ -3,9 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title>vue</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+     		<div class="post">
+     			<span>{{ post.id}}</span>
+     			<h3>{{post.title}}</h3>
+     			<p>{{post.body}}</p>
+     		</div>
+     		<div class="editor">
+                <form @submit.prevent="savePost()">
+                    <input type="text" placeholder="Заголовок" v-model="post.title">
+                    <textarea placeholder="Текст" v-model="post.body"></textarea>
+                    <button>Опубликовать</button>
+                </form>
+            </div>
+            <hr>
+     		<div class="post" v-for="post in posts">
+     			<span>{{ post.id}}</span>
+     			<h3>{{post.title}}</h3>
+     			<p>{{post.body}}</p>
+     		</div>
+
+    </div>
     <script src="/dist/build.js"></script>
   </body>
 </html>

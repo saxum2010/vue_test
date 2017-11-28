@@ -1,61 +1,26 @@
 import Vue from 'vue'
-import VueResource from 'vue-resource'
+// import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
 import App from './App.vue'
 
-Vue.use(VueResource)
+import Brands from './views/Brands.vue'
+import Contacts from './views/Contacts.vue'
+import Projects from './views/Projects.vue'
+import Blog from './views/Blog.vue'
+import Post from './views/Post.vue'
 
+Vue.use(VueRouter)
+
+var router = new VueRouter({
+  routes: [
+    { path: '/brands', component: Brands },
+    { path: '/contacts', component: Contacts },
+    { path: '/projects', component: Projects },
+    { path: '/blog', component: Blog },
+    { path: '/post/:id', name: 'post', component: Post }
+  ]
+})
 new Vue({
   el: '#app',
-  	data: {
-        endpoint: 'https://jsonplaceholder.typicode.com/posts',
-        posts: [],
-        post: {}
-    },
- 	computed: {
-        resource: function() {
-            return this.$resource('https://jsonplaceholder.typicode.com/posts{/id}')
-        }
-    },
-	methods: {
-		savePost: function() {
-
-            this.resource.save(this.post)
-
-        },
-        getSinglePost: function(post_id) {
-
-            this.resource.get({ id: post_id }).then(function(response) {
-
-                this.post = response.data
-
-            })
-
-        },
-		 getAllPosts: function() {
-
-            var options = {
-                params: {
-                    _start: 10,
-                    _limit: 5
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-
-            // this.$http.get(this.endpoint, options).then(function(response) {
-            this.resource.get().then(function(response) {
-                this.posts = response.data
-
-            }, function(error) {
-                // ошибка
-            })
-
-        }
-	},
-    created: function() {
-        this.getSinglePost(100)
-        this.getAllPosts()
-    }
-  // render: h => h(App)
+  router: router
 })

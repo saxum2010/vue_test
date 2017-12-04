@@ -15,10 +15,11 @@
 
 <script>
 export default {
+  props:['settings'],
   data(){
     return {
-      x : mtRand(100,200),
-      y : mtRand(100,200)
+      x : mtRand(this.settings.from,this.settings.to),
+      y : mtRand(this.settings.from,this.settings.to)
     }
   },
     computed:{
@@ -27,8 +28,8 @@ export default {
       },
       answers(){
         let res = [this.good];
-        while(res.length < 4){
-            let num = mtRand(this.good-20, this.good+20);
+        while(res.length < this.settings.varians){
+            let num = mtRand(this.good-this.settings.range, this.good+this.settings.range);
             if(res.indexOf(num) === -1){
               res.push(num);
             }
@@ -43,7 +44,7 @@ export default {
         if(num == this.good){
           this.$emit('success');
         }else{
-          this.$emit('error', '${this.x} + ${this.y} = ${this.good}!');
+          this.$emit('error', this.x+' + '+ this.y +' = '+this.good+'!');
         }
       }
     }
@@ -57,6 +58,6 @@ function mtRand(min,max){
 
 <style scoped>
   .btn-succes{
-    margin-left: 10px;
+    margin-left: 10px!important;
   }
 </style>
